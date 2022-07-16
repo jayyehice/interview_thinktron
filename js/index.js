@@ -25,15 +25,16 @@ window.addEventListener("load", function(){
 
         },
         mounted() {
-            let myMap = L.map('mapid', {
-                center: [25.02152871889353, 121.54964447021486],
-                zoom: 14
+            
+            // *** 放置地圖
+            const map = L.map('map', {
+                center: [23.773, 120.959], // 中心點座標
+                zoom: 10, // 0 - 18
+                attributionControl: true, // 是否秀出「leaflet」的貢獻標記
+                zoomControl: true , // 是否秀出 - + 按鈕
             });
-
-            L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-                maxZoom: 14,
-                attribution: 'Map data: © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: © <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-            }).addTo(myMap);
+            // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+            L.tileLayer('https://tile.openstreetmap.bzh/br/{z}/{x}/{y}.png').addTo(map);
 
             document.getElementById('test').addEventListener("click", e => {
                 console.log(myMap.getCenter());
