@@ -11,17 +11,12 @@ window.addEventListener("load", function(){
         watch: {},
         
         created() {
-            // const url = './php/information.php';
-            // fetch(url)
-            //     .then(response => {
-            //         if (response.ok) {
-            //             return response.json();
-            //         } else {
-            //             const { status, statusText } = response;
-            //          throw Error(`${status}: ${statusText}`);
-            //         }
-            //     })
-            //     .then(text => this.faq_list = text);
+            const url = 'http://127.0.0.1:5000/';
+            fetch(url, {
+                    mode: 'cors'
+                })
+                .then(response => response.json())
+                .then(text => console.log(text));
 
         },
         mounted() {
