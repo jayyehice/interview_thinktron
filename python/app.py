@@ -45,7 +45,7 @@ def station():
     station_data = {}
     
     for i in range(len(rows)):
-        station_data[i]=list(map(str, (rows[i])));
+        station_data[rows[i][0]]=list(map(str, (rows[i])));
         
     return json.dumps(station_data)
 
@@ -58,7 +58,7 @@ def rainfall():
     conn = psycopg2.connect(database=d, user=u, password=p, host="127.0.0.1", port="5432")
     cur = conn.cursor()
 
-    cur.execute( "SELECT * FROM rainfall where stationid = '"+stationid+"' ORDER BY recordtime DESC LIMIT 24;" )
+    cur.execute( "SELECT * FROM rainfall where stationid = '"+stationid+"' ORDER BY recordtime LIMIT 24;" )
     rows = cur.fetchall()
 
     conn.commit()
@@ -70,6 +70,9 @@ def rainfall():
         station_data[i]=list(map(str, (rows[i])));
         
     return json.dumps(station_data)
+
+
+
 
 @app.route('/rainfallnow/')
 def rainfallnow():
